@@ -56,7 +56,8 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 
 - Use **BaseUI** as the functional foundation for interactive components (dropdowns, dialogs, selects, etc.) unless the codebase already uses another headless library.
 - **Dropdowns**: even padding on all sides (`p-1` container, `px-3 py-1.5` items). Minimal vertical space between options. Apply a **Framer Motion** animation to open/close (e.g. `scaleY` + `opacity` from origin top).
-- **Dialogs**: avoid classic Shadcn-style large headers. Use smaller fonts, light grey padded list backgrounds, and minimal chrome. Keep them compact.
+- **Dialogs**: fairly wide (`max-w-lg` to `max-w-2xl` depending on content). Always include a header row: title on the left (semibold, 15–16px) and a close button on the top right. Close button: `X` icon from Lucide inside a very light grey padded circle (`bg-gray-100 rounded-full p-1.5`), subtle hover darkens the circle slightly. Use smaller fonts throughout, light grey padded list backgrounds, minimal chrome.
+- **Dialog animations**: use `AnimatePresence` for mount/unmount with a backdrop fade and dialog entering via `opacity` + `scale: 0.97 → 1`. When content inside the dialog transitions (e.g. multi-step flows), animate old content out and new content in — never hard-cut between states. Use the `layout` prop on the dialog container so it smoothly morphs height as content changes.
 - **Hover states**: simple and subtle. Light background shifts only — no color changes or bold effects.
 - All components should feel like they belong to the same quiet, minimal system.
 
@@ -72,6 +73,15 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - Easing: use `ease: [0.16, 1, 0.3, 1]` (ease-out expo) or Framer's `spring` for natural feel.
 - Use **continuity transitions** (`layoutId` in Framer Motion) whenever an element moves between locations or expands into a new state — a card opening into a detail view, a list item becoming a modal, a thumbnail growing into a hero. The element should feel like it physically travels, not teleports.
 - Use **context transitions** for navigational changes — the transition should reflect the direction and hierarchy of the navigation (e.g., slide right/forward when going deeper, slide left/back when returning). The user's sense of place should never be broken.
+
+---
+
+## Dividers
+
+- Always **1px, light grey** (`border-gray-200` / `#E5E7EB`). Never thicker, never dark.
+- Dividers must stretch to the **full edges** of the component they sit inside or the edges of the screen — no inset margins.
+- If a divider lives inside a padded container, cancel the padding with negative margins (e.g. `-mx-4` inside a `px-4` container, `-mx-6` inside a `px-6` container).
+- Use a `div` with `border-t` or an `<hr>` — keep it simple.
 
 ---
 
