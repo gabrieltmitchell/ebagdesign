@@ -71,7 +71,7 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - **Dialogs**: fairly wide (`max-w-lg` to `max-w-2xl` depending on content). Always include a header row: title on the left (semibold, 15–16px) and a close button on the top right. Close button: `X` icon from Lucide inside a very light grey padded circle (`bg-gray-100 rounded-full p-1.5`), subtle hover darkens the circle slightly. Use smaller fonts throughout, light grey padded list backgrounds, minimal chrome.
 - **Dialog animations**: use `AnimatePresence` for mount/unmount with a backdrop fade and dialog entering via `opacity` + `scale: 0.97 → 1`. When content inside the dialog transitions (e.g. multi-step flows), animate old content out and new content in — never hard-cut between states. Use the `layout` prop on the dialog container so it smoothly morphs height as content changes.
 - **Hover states**: simple and subtle. Light background shifts only — no color changes or bold effects.
-- **Row stacks** (process steps, log items, list rows): gap between rows should be `2px` maximum. Apply grouped radii — rounded top corners on the first row, rounded bottom corners on the last, small radius (`2–4px`) on middle rows. This makes the stack read as one cohesive unit. Text inside rows should be short — one short phrase, not a sentence.
+- **Row stacks** (process steps, log items, agentic step lists): gap between rows should be `2px` maximum. Apply grouped radii — rounded top corners on the first row, rounded bottom corners on the last, small radius (`2–4px`) on middle rows. This makes the stack read as one cohesive unit. Text inside rows should be short — one short phrase, not a sentence. **Do not use grouped radii for sidebar nav rows** — sidebar items are independent targets, not a cohesive stack. Use uniform `8px` radius on all sidebar rows.
 - **Progressive reveal:** components that are triggered by user action should not render until that action happens. Use a `hasStarted` flag or equivalent — don't mount an empty card as a placeholder.
 - **Keyboard support on custom interactive elements.** Any element that acts like a button but isn't a `<button>` (expandable rows, custom toggles) must handle `Enter` and `Space` keydown events explicitly.
 - All components should feel like they belong to the same quiet, minimal system.
@@ -115,6 +115,39 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - Never use generic grey placeholders, silhouette icons, or default avatar images.
 - Avatars should always be **circular**. Common sizes: 24px, 32px, 40px, 48px. Match size to context.
 - Initials: 1–2 characters (first + last initial). White text on darker background colors, dark text on lighter ones.
+
+---
+
+## Sidebar
+
+Sidebars are systems, not lists in a column. They have fixed geometry, scroll boundaries, nested structure, footer behaviour, and collapse constraints that must be designed together.
+
+**Shell & scroll:**
+- Lock the app shell to the viewport — `height: 100vh; overflow: hidden` on `html`, `body`, and `#root`. The sidebar and workspace each own their own `overflow-y: auto`. The page body never scrolls.
+- The top bar should be `position: sticky; top: 0` inside the workspace scroll container — not fixed to the viewport.
+
+**Selected state:**
+- Active nav items get a simple light grey background (`#f3f4f6`). That is all.
+- Do not use `layoutId` for the active indicator — an animated pill that moves between items creates the wrong model (items should highlight, not relocate).
+
+**Row radii:**
+- Sidebar nav rows are independent targets. Use a uniform `border-radius: 8px` on all rows. Do not apply grouped top/bottom radii here — that pattern is for dense task stacks, not navigation.
+
+**Collapsible sidebars:**
+- Give every icon a fixed `32×32px` wrapper (`flex: 0 0 auto`, centered) so the icon position never depends on label width or row padding.
+- Collapse only the label — use `max-width: 0; opacity: 0` on the label element, never change the icon's position or row alignment during the animation.
+- Do not switch `justify-content` or `align-items` at the end of the collapse — this causes a snap. The icon rail stays anchored to the same left position in all states.
+- Separate text-label collapse classes from structural section collapse classes. A `sidebar-label` class should only apply to text, not to whole blocks like dropdowns or project lists.
+
+**Nested items:**
+- Indented children need a visual relationship, not just padding. Use a CSS `::before` branch line (1px `#e5e7eb` vertical line on the parent, with a small L-shaped connector on each child). This communicates hierarchy without labels, cards, or borders.
+
+**Footer:**
+- Footer controls (`settings`, `profile`) must not shrink. Use `flex: 0 0 auto` on footer rows. Use a `flex: 1` spacer above the footer to absorb available height — never let the scrollable area compete with footer elements for space.
+
+**Typography & animation:**
+- Sidebar text should be one step below body text — typically `12–13px`.
+- Collapse and expand animations: `160–260ms`, `cubic-bezier(0.16, 1, 0.3, 1)`. Short and quiet.
 
 ---
 
