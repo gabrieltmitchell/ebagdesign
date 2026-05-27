@@ -21,4 +21,5 @@ When invoking the design skill, point the agent at a relevant reference:
 
 ## Patterns
 
-<!-- index is updated as new patterns are added -->
+- [Sidebar Navigation](sidebar-navigation.md) — compact icon+text sidebar, tight spacing, section groups, nested items
+- [Chat Input](chat-input.md) — centered floating input card with toolbar row, grows with content, light grey page background
