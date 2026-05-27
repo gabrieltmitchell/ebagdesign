@@ -21,5 +21,13 @@ When invoking the design skill, point the agent at a relevant reference:
 
 ## Patterns
 
-- [Sidebar Navigation](sidebar-navigation.md) — compact icon+text sidebar, tight spacing, section groups, nested items
-- [Chat Input](chat-input.md) — centered floating input card with toolbar row, grows with content, light grey page background
+- [Sidebar Navigation](sidebar-navigation.md) — 24–26px rows, 0px gaps, warm off-white bg, inset hover pills, only color is team avatars
+- [Chat Input](chat-input.md) — white card composer on warm grey canvas, border not shadow, oversized placeholder, toolbar inside the card
+- [Sidebar Popover](sidebar-popover.md) — settings mode overlay in the sidebar column, larger rows signal mode switch, pinned back action
+- [Dropdown Menu](dropdown-menu.md) — two variants: navigation switcher with trailing checkmark vs. action menu with leading icons + keyboard shortcuts
+- [Modal Dialog](modal-dialog.md) — centered settings dialog, hairline dividers, desaturated backdrop, structure felt through spacing not borders
+- [Popover](popover.md) — no backdrop, single card with wide soft shadow, title+description as one writing surface, attribute pills not form fields
+- [Callout Notification](callout-notification.md) — announces change already made, equal weight across message/actions, shape carries hierarchy not bold
+- [Gallery Layout](gallery-layout.md) — tiles are the cards, colored preview surface IS the container, no outer chrome
+- [Billing Module](billing-module.md) — two-pane modal, selected nav item surface punches through to match content pane
+- [Settings & Preferences](settings-preferences.md) — section headers outside the card, all controls aligned to one vertical gridline, blue only for active toggles
