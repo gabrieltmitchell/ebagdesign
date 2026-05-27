@@ -14,11 +14,11 @@ A dense, mono-chrome sidebar for a productivity / project management tool. The w
 - Background is a very faintly warm off-white (`#FAFAFA`–`#F7F7F7`), one shade darker than the white chat surface to its right — this differentiation matters
 - Vertical stack with no internal scroll bar visible; sections are stacked top-to-bottom:
   1. **Workspace header** (top): small square brand mark + workspace name + dropdown chevron on the left; two icon-only actions (search, compose/new) right-aligned
-  2. **Pinned top-level items** (Inbox, My issues, Pulse) — no section label, sits directly under the header
+  2. **Pinned top-level items** (e.g. primary queue, personal view, activity feed) — no section label, sits directly under the header
   3. **Collapsible section groups** (Workspace, Favorites, Your teams) — each with a small label + chevron that toggles visibility
   4. **Team blocks** — each team is itself a collapsible parent with sub-items (channels/views) nested under it, often with a small lock or status glyph trailing
   5. **Footer item** ("Try" or similar) at the very bottom, dimmed and small
-- A single inline badge (e.g. `67`) sits flush right on the same line as its item (Inbox), no pill, no background — just dimmed numeric text
+- A single inline badge (e.g. `67`) sits flush right on the same line as its item, no pill, no background — just dimmed numeric text
 - Team rows use a tiny colored square favicon/avatar (~14px, rounded ~3px) instead of a line icon — this is the only chromatic element in the entire sidebar
 
 ## Spacing & Sizing
@@ -38,7 +38,7 @@ A dense, mono-chrome sidebar for a productivity / project management tool. The w
 - All nav item labels: **13px**, weight 400–450, color `#3F3F46`–`#52525B` (warm dark grey, not pure black)
 - Workspace name in header: **13px**, weight 500–550, slightly darker than items
 - Section labels ("Workspace", "Favorites", "Your teams"): **12px**, weight 450–500, color `#A1A1AA` (mid-grey), sentence case (not uppercase, not tracked) — they read as quiet headings, not screaming labels
-- Inbox count badge: **12px**, weight 400, color `#A1A1AA`, no background
+- Item count badge: **12px**, weight 400, color `#A1A1AA`, no background
 - Footer "Try": **12px**, color `#A1A1AA`
 - Letter spacing: default / 0 — no tracking applied anywhere
 

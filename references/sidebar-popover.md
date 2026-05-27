@@ -15,10 +15,10 @@ A full-height popover that slides over the existing sidebar to reveal a deep, ca
 - Top of the popover: a **"Back to app" pill button** with a left-chevron icon — this is the primary affordance to dismiss
 - Just below "Back to app": a **tooltip / keyboard hint chip** showing the label + `⌘` + `Esc` keys — this is part of the steady-state UI in this screenshot (likely surfaced on hover/focus of the back button, then auto-dismissed)
 - Below that, a **flat scrollable list** of items grouped into labeled sections:
-  - Personal/account group (Notifications, Security & access, Connected accounts, Agent personalization) — no visible section header above this group
-  - **Issues** section — label, then items (Labels, Templates, SLAs)
-  - **Projects** section — label, then items (Labels, Templates, Statuses, Updates)
-  - **Features** section — label, then items (AI & Agents, Initiatives, Documents, Customer requests, Releases, Pulse, Asks, Emojis, Integrations)
+  - Personal/account group (e.g. Notifications, Security, Connected accounts, Personalization) — no visible section header above this group
+  - **Entity type A** section — label, then items (e.g. Labels, Templates, SLAs)
+  - **Entity type B** section — label, then items (e.g. Labels, Templates, Statuses, Updates)
+  - **Features / modules** section — label, then a flat list of toggleable feature areas
 - All items use a **line icon + text** pattern, identical structure to the main sidebar (consistency across layers)
 - Items are flat (no nesting in this view) — depth is created by section labels, not indentation
 

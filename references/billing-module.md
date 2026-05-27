@@ -5,7 +5,7 @@ tags: overlay, settings, billing, modal, two-pane
 
 # Billing Settings Modal
 
-A centered, two-pane modal dialog for managing account/workspace settings (Plans, Invite, Members, Permissions, Fonts, Details) with a persistent left rail of sections and a right content pane that swaps based on selection.
+A centered, two-pane modal dialog for managing account/workspace settings with a persistent left rail of sections and a right content pane that swaps based on selection.
 
 ## Layout & Structure
 
@@ -14,7 +14,7 @@ A centered, two-pane modal dialog for managing account/workspace settings (Plans
 - Two-pane internal split:
   - Left rail: ~180px wide, light surface, holds the section list.
   - Right pane: fills the remainder, white surface, holds section content.
-- Header strip spans the full modal width: title "Settings" left-aligned, a segmented toggle ("Account" | "Workspace") center-right, and a close (×) icon at the far right.
+- Header strip spans the full modal width: title left-aligned, a segmented toggle (e.g. two top-level scopes) center-right, and a close (×) icon at the far right.
 - A subtle hairline divider separates the header from the body and the two panes from each other.
 
 ## Spacing & Sizing
@@ -27,24 +27,24 @@ A centered, two-pane modal dialog for managing account/workspace settings (Plans
 - Section heading ("Overview", "Workspace") gets ~24px of space above and ~10px below.
 - Vertical rhythm inside the content pane:
   - Heading to first line of body text: ~8px.
-  - Caption / fine-print line ("Includes 20% VAT. Learn more"): immediately under heading with ~6px gap.
+  - Caption / fine-print line (e.g. tax note with an inline link): immediately under heading with ~6px gap.
   - Block-level gap between meta block and price: ~14px.
   - Price to button row: ~16px.
   - Button row to next section ("Workspace"): ~32px.
 - Button row: two buttons side by side with ~8px gap; each ~32px tall, ~14px horizontal padding.
-- Footer-like row at the bottom ("Business Workspace / 2 editors" with price): full-width line with the label group on the left and price group right-aligned, ~16px vertical padding.
+- Footer-like row at the bottom (workspace/plan summary with price): full-width line with the label group on the left and price group right-aligned, ~16px vertical padding.
 - Segmented toggle in header: two pills inside a ~28px tall track with ~3px inner padding; selected pill has a white surface and soft shadow, unselected is transparent.
 
 ## Typography
 
-- Modal title "Settings": 15–16px, medium weight, near-black.
+- Modal title: 15–16px, medium weight, near-black.
 - Left rail items: 13–14px, regular weight, dark gray; selected item uses the same size with slightly heavier weight (medium) and darker tone.
-- Section heading ("Overview", "Workspace"): 16–17px, semibold, near-black.
+- Section heading: 16–17px, semibold, near-black.
 - Body/explanatory copy: 13px, regular, mid-gray (~#6B7280-ish).
-- Inline link ("Learn more", "here"): same size as body, underlined, same mid-gray (not a bright accent — link affordance comes from underline, not color).
-- Price ("£85.00"): 22–24px, semibold, near-black. Sits on its own line.
-- Sub-price meta ("Renews Jun 19th, 2026"): 12–13px, light gray.
-- Right-aligned price in list row ("£40 / monthly"): price 14px medium, unit "monthly" 12px light gray on the line below, right-aligned.
+- Inline links: same size as body, underlined, same mid-gray (not a bright accent — link affordance comes from underline, not color).
+- Primary price: 22–24px, semibold, near-black. Sits on its own line.
+- Sub-price meta (e.g. renewal date): 12–13px, light gray.
+- Right-aligned price in list row: price 14px medium, billing cadence ("monthly", "yearly") 12px light gray on the line below, right-aligned.
 - Segmented toggle labels: 13px, medium.
 
 ## Colors & Surfaces
@@ -53,17 +53,17 @@ A centered, two-pane modal dialog for managing account/workspace settings (Plans
 - Modal surface: pure white (#FFFFFF) for the right pane.
 - Left rail surface: subtle off-white / light gray (~#F7F7F6), about 2–3% darker than the right pane, creating a soft inset feel without a hard border.
 - Selected nav item: white pill background that matches the right pane, ~6–8px corner radius, with a hairline border or very subtle shadow so it reads as "lifted out" of the rail.
-- Primary action button ("Update Billing Details"): near-black fill (#111) with white label, ~8px radius.
-- Secondary button ("View Invoices"): white fill with a 1px light gray border, dark label, ~8px radius.
+- Primary action button: near-black fill (#111) with white label, ~8px radius.
+- Secondary button: white fill with a 1px light gray border, dark label, ~8px radius.
 - Dividers: 1px hairlines at ~#ECECEC, used between header and body, and between rail and pane.
 - Text colors: primary ~#111, secondary ~#6B7280, tertiary/meta ~#9CA3AF.
 
 ## Interaction & Behaviour
 
 - Modal is dismissed via the × icon, Escape key, or clicking outside the card.
-- Header segmented toggle ("Account" / "Workspace") swaps the whole content scope; the left rail items stay the same but their contents differ.
+- Header segmented toggle swaps the whole content scope; the left rail items stay the same but their contents differ.
 - Left rail items are single-select; the selected item shows the white "lifted" pill. Hover state for non-selected items is a very subtle gray fill (~#EFEFEE) without the lift/shadow.
-- "Learn more" and "here" inline links open external info inline or in a new pane.
+- Inline links open external info inline or in a new pane.
 - Primary button is always the rightmost in a row; it is the highest-contrast element in the pane and acts as the visual anchor.
 - Right pane scrolls independently if content overflows; left rail stays fixed.
 

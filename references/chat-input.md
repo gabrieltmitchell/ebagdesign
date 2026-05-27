@@ -26,7 +26,7 @@ A centered composer for an AI assistant embedded inside a productivity tool. Rea
 - Input zone minimum height: **~56px** (enough for ~2 lines visible before growing)
 - Toolbar zone height: **~32px**
 - Vertical gap between input zone baseline and toolbar: **10–12px**
-- Toolbar left pill ("Skills" with chevron + globe icon): height **24px**, padding `0 8px 0 6px`, icon-to-text gap **4px**, corner radius **6px**
+- Toolbar left pill ("Context" with chevron + globe icon): height **24px**, padding `0 8px 0 6px`, icon-to-text gap **4px**, corner radius **6px**
 - Toolbar right icons (attachment, send arrow): **16px** glyphs, ~24×24px hit targets, gap between them ~6px
 - Example cards row: 3 columns, ~12px column gap, each card ~180px wide × ~96px tall
 - Example card internal padding: **14px**, with the icon in the top-left and 2 lines of text below
@@ -36,7 +36,7 @@ A centered composer for an AI assistant embedded inside a productivity tool. Rea
 
 - Placeholder text: **15px**, weight 400, color `#A1A1AA` (warm light grey) — sized larger than typical inputs to feel like a prompt invitation, not a field label
 - Input text (when typed): **15px**, weight 400, color `#18181B`
-- Toolbar pill text ("Skills"): **12.5–13px**, weight 450, color `#52525B`
+- Toolbar pill text ("Context"): **12.5–13px**, weight 450, color `#52525B`
 - Example card title: **13px**, weight 500, color `#18181B`
 - Example card description: **12.5px**, weight 400, color `#71717A`, ~1.4 line-height
 - "Get started with some examples" helper label: **12px**, weight 400, color `#71717A`
@@ -57,7 +57,7 @@ A centered composer for an AI assistant embedded inside a productivity tool. Rea
 
 - The textarea grows vertically as the user types; the whole card grows with it (no internal scroll until many lines)
 - Toolbar controls remain visible at all times — they are not gated behind focus
-- "Skills" pill opens a popover with a list of capabilities; chevron rotates ~180° while open
+- "Context" pill opens a popover with a list of capabilities; chevron rotates ~180° while open
 - Attachment icon opens a file picker
 - Send button is enabled-looking only when there's content; otherwise its arrow is muted (`#A1A1AA`)
 - `Enter` submits, `Shift+Enter` newlines (standard chat composer behavior)
@@ -71,7 +71,7 @@ A centered composer for an AI assistant embedded inside a productivity tool. Rea
 - The empty-state row (helper text + example cards + dismiss) fades + slides up **8px** on mount, **200ms ease-out**
 - Dismissing the example row: fade + slide **down 4px**, **150ms ease-in**, then the surrounding layout reflows
 - Textarea height growth: use Framer Motion `layout` on the card so height changes interpolate smoothly (~120ms)
-- "Skills" popover opens with `opacity 0→1` + `y: -4→0`, **140ms ease-out**
+- "Context" popover opens with `opacity 0→1` + `y: -4→0`, **140ms ease-out**
 - Send arrow on submit: brief scale `1→0.9→1` (~120ms) provides tactile feedback
 - No bouncy springs anywhere — motion is short and damped to match the calm tone
 
@@ -79,7 +79,7 @@ A centered composer for an AI assistant embedded inside a productivity tool. Rea
 
 - **The composer is a card, not an input.** Generous padding, large placeholder, two distinct zones — it reads as a surface you compose on, not a field you fill.
 - **Border, not shadow.** A 1px border on a slightly-warm canvas is what makes this feel like a high-end tool. A drop shadow would push it toward a consumer chat app.
-- **Toolbar controls live inside the card, not below it.** The "Skills" pill and the send arrow are part of the composer's footer — there is no detached action bar.
+- **Toolbar controls live inside the card, not below it.** The "Context" pill and the send arrow are part of the composer's footer — there is no detached action bar.
 - **The placeholder is oversized.** At 15px, it invites a thought, not a query. Don't shrink it to 13–14px or it stops feeling premium.
 - **The empty-state helper is a separate, dismissible layer.** It uses the same card vocabulary (white, 12px radius, 1px border) so it feels related — but its smaller scale and quiet header make it clearly secondary. When dismissed, the composer should not move.
 - **The watermark behind the composer matters.** A faint centered glyph at ~15% opacity gives the canvas a sense of place without ever competing. Don't omit it; don't make it visible.
