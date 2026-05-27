@@ -75,6 +75,18 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - **Chevrons** must rotate smoothly on open/close (`rotate: 180`).
 - Durations: 150–250ms for micro-interactions, 250–350ms for layout shifts.
 - Easing: `ease: [0.16, 1, 0.3, 1]` or Framer's `spring`.
+- Use **continuity transitions** (`layoutId`) whenever an element moves between locations or expands into a new state — cards opening into detail views, list items becoming modals, thumbnails growing into heroes. The element should physically travel, not teleport.
+- Use **context transitions** for navigational changes — transitions should reflect the direction and hierarchy of navigation (slide right when going deeper, slide left when going back). Never break the user's sense of place.
+
+---
+
+## Profile Pictures & Avatars
+
+- Always use the authenticated user's image from their auth provider (Google, GitHub, etc.) when available. Pull it from the session/auth context.
+- Fall back to a **colored avatar with the user's initials** — deterministic color from the user's name or ID so it's always consistent for that user.
+- Never use generic grey placeholders, silhouette icons, or default avatar images.
+- Avatars always **circular**. Common sizes: 24px, 32px, 40px, 48px.
+- Initials: 1–2 characters. White text on darker backgrounds, dark text on lighter ones.
 
 ---
 
