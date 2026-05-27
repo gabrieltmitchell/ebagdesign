@@ -72,6 +72,8 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - **Dialog animations**: use `AnimatePresence` for mount/unmount with a backdrop fade and dialog entering via `opacity` + `scale: 0.97 → 1`. When content inside the dialog transitions (e.g. multi-step flows), animate old content out and new content in — never hard-cut between states. Use the `layout` prop on the dialog container so it smoothly morphs height as content changes.
 - **Hover states**: simple and subtle. Light background shifts only — no color changes or bold effects.
 - **Row stacks** (process steps, log items, list rows): gap between rows should be `2px` maximum. Apply grouped radii — rounded top corners on the first row, rounded bottom corners on the last, small radius (`2–4px`) on middle rows. This makes the stack read as one cohesive unit. Text inside rows should be short — one short phrase, not a sentence.
+- **Progressive reveal:** components that are triggered by user action should not render until that action happens. Use a `hasStarted` flag or equivalent — don't mount an empty card as a placeholder.
+- **Keyboard support on custom interactive elements.** Any element that acts like a button but isn't a `<button>` (expandable rows, custom toggles) must handle `Enter` and `Space` keydown events explicitly.
 - All components should feel like they belong to the same quiet, minimal system.
 
 ---
@@ -87,9 +89,13 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - Use **continuity transitions** (`layoutId` in Framer Motion) whenever an element moves between locations or expands into a new state — a card opening into a detail view, a list item becoming a modal, a thumbnail growing into a hero. The element should feel like it physically travels, not teleports.
 - Use **context transitions** for navigational changes — the transition should reflect the direction and hierarchy of the navigation (e.g., slide right/forward when going deeper, slide left/back when returning). The user's sense of place should never be broken.
 - **Separate stable content from animated content.** Elements that should stay anchored (e.g. a task title, a checkbox) must not participate in layout projection. Wrap only the animated portion — don't apply `layout` to the entire parent if it causes stable siblings to shift.
+- **Scope `AnimatePresence` to the changing area only.** Place it around the list or region that's actually changing — not the outer card or page wrapper. Animating too high up causes unrelated elements to shift.
 - **Animated rows grow downward, not from center.** When appending rows to a list, new items should enter from the bottom. Set `transform-origin: top` on expanding containers.
+- **Row entry animation recipe:** `height: 0 → auto`, `opacity: 0 → 1`, `scale: 0.97 → 1`, `y: -4 → 0`, optionally a subtle `filter: blur(2px) → blur(0)`. Exit is the reverse. Keep durations under 200ms.
+- **Text inside rows animates independently from the row container.** Wrap the label in its own `motion.span` with a slight `y` and `opacity` entrance — this makes content feel like it's populating, not just appearing.
 - **Use inner wrappers for padding in collapsible rows.** Apply padding inside an inner element, not the animated outer wrapper — this prevents height-collapse glitches and flash during exit animations.
 - **State transformations beat add/remove.** When a row changes meaning (e.g. the first step row becoming a summary row), morph it in place using `layoutId` rather than unmounting one and mounting another.
+- **Sequence completion states across ticks.** When a process finishes, show the final step first, then change the parent completion state on the next timer tick. Simultaneous state changes cause competing animations.
 
 ---
 
