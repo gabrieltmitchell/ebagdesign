@@ -21,6 +21,7 @@ When invoking the design skill, point the agent at a relevant reference:
 
 ## Patterns
 
+- [Animation Vocabulary & Best Practices](animation-vocabulary.md) — shared motion language: entrances/exits, sequencing, transforms, state transitions, feedback, easing, springs, ambient motion, reduced motion, and performance QA
 - [Sidebar Navigation](sidebar-navigation.md) — 24–26px rows, 0px gaps, warm off-white bg, inset hover pills, only color is team avatars
 - [Chat Input](chat-input.md) — white card composer on warm grey canvas, border not shadow, oversized placeholder, toolbar inside the card
 - [Sidebar Popover](sidebar-popover.md) — settings mode overlay in the sidebar column, larger rows signal mode switch, pinned back action

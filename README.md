@@ -2,7 +2,7 @@
 
 Frontend design rules for clean, minimal, product-grade UI. Works with Claude Code, Cursor, and OpenAI Codex.
 
-Covers spacing, typography, colors, buttons, icons, components, animations, and a QA process for keeping codebases clean and modular.
+Covers spacing, typography, colors, buttons, icons, components, animations, motion vocabulary, and a QA process for keeping codebases clean and modular.
 
 ---
 
@@ -56,8 +56,14 @@ For global rules, place the file at `~/.codex/AGENTS.md`.
 | Buttons | Rounded, light grey, no shadows. More horizontal padding than vertical. |
 | Icons | Lucide only. Consistent sizing. Never mix libraries. |
 | Components | BaseUI foundation. Animated dropdowns and dialogs. Subtle hover states. |
-| Animations | Framer Motion everywhere. Smooth morphing containers. Rotating chevrons. |
+| Animations | Framer Motion everywhere. Smooth morphing containers. Animation vocabulary, easing, springs, reduced motion, and performance QA. |
 | QA Process | Scan before building. No duplication. Modular component library mindset. |
+
+---
+
+## Animation vocabulary
+
+The animation rules now include a shared vocabulary distilled from [animations.dev/vocabulary](https://animations.dev/vocabulary): entrances/exits, sequencing, transforms, continuity transitions, scroll motion, interaction feedback, easing, springs, ambient motion, polish effects, and performance. See [`references/animation-vocabulary.md`](references/animation-vocabulary.md) for the full checklist.
 
 ---
 

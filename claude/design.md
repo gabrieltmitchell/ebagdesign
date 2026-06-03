@@ -80,6 +80,15 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 
 ## Animations
 
+- Use the animation vocabulary consistently: entrances/exits, sequencing, transforms, state transitions, scroll motion, feedback, easing, springs, ambient motion, polish effects, and performance all have distinct jobs.
+- **Purpose first:** every animation must orient, give feedback, preserve continuity, or improve perceived performance. If it only decorates, remove it.
+- **Prefer transform + opacity.** Animate `translate`, `scale`, `rotate`, and `opacity` for smooth composited motion; avoid frame-by-frame `width`, `height`, `top`, or `left` unless using layout projection intentionally.
+- **Match the origin to the interaction.** Popovers grow from their trigger, menus open from their edge, rows expand from the top, and shared elements travel from their previous position.
+- **Use the right easing:** ease-out for user-triggered responses, ease-in-out for objects already moving between states, linear only for constant loops, and springs when interruption, momentum, or physical settle matters.
+- **Sequence related motion.** Stagger lists and choreograph multi-part transitions lightly so they read as one coordinated change, not separate effects.
+- **Keep feedback physical but quiet.** Hover is a subtle background/opacity shift; press/tap is a small scale-down and spring-back; drag/swipe/reorder should carry velocity and momentum.
+- **Respect reduced motion.** Check `prefers-reduced-motion` and reduce distance, parallax, looping motion, and nonessential transitions while preserving state feedback.
+- **Performance is part of design.** Target 60fps+, watch for jank/dropped frames/layout thrashing, and use `will-change` sparingly for short-lived promotion only.
 - Use **Framer Motion** for all transitions and state changes.
 - **Never jump between states.** Every transition must be smooth — use `AnimatePresence` for mount/unmount, `layout` prop for size/position changes.
 - When a component transitions between states, its **container must morph** to the new size/shape — do not hard-code dimensions.
@@ -96,6 +105,8 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 - **Use inner wrappers for padding in collapsible rows.** Apply padding inside an inner element, not the animated outer wrapper — this prevents height-collapse glitches and flash during exit animations.
 - **State transformations beat add/remove.** When a row changes meaning (e.g. the first step row becoming a summary row), morph it in place using `layoutId` rather than unmounting one and mounting another.
 - **Sequence completion states across ticks.** When a process finishes, show the final step first, then change the parent completion state on the next timer tick. Simultaneous state changes cause competing animations.
+
+See also: `references/animation-vocabulary.md` for the full vocabulary and QA checklist.
 
 ---
 
