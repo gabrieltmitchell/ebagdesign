@@ -55,6 +55,7 @@ For global rules, place the file at `~/.codex/AGENTS.md`.
 | Colors | Black and grey palette. Light grey surfaces. No gradients or shadows. |
 | Buttons | Rounded, light grey, no shadows. More horizontal padding than vertical. |
 | Icons | Lucide only. Consistent sizing. Never mix libraries. |
+| Design System Source of Truth | Use DESIGN.md-style tokens + prose as project memory: exact values in YAML, intent and constraints in Markdown. |
 | Components | BaseUI foundation. Animated dropdowns and dialogs. Subtle hover states. |
 | Animations | Framer Motion everywhere. Smooth morphing containers. Animation vocabulary, easing, springs, reduced motion, and performance QA. |
 | Agent Handoff | Draw the invisible layout boxes: rails, bounds, padding, hit areas, anchors, and stable vs. changing regions. |
@@ -69,6 +70,10 @@ The animation rules now include a shared vocabulary distilled from [animations.d
 ## Agent-readable layout specs
 
 When handing designs to coding agents, make the invisible structure visible: alignment rails, bounding boxes, padding boxes, hit areas, anchors, and stable vs. changing regions. See [`references/agent-layout-alignment.md`](references/agent-layout-alignment.md) for the principle and QA checklist.
+
+## DESIGN.md agent rules
+
+Google's [`design.md`](https://github.com/google-labs-code/design.md) format is a strong complement to these rules: use tokens for exact values and prose for the design rationale agents need to preserve taste. It should not replace the existing ebagdesign rules; it should act as the project-level source of truth that these rules execute against. See [`references/design-md-agent-rules.md`](references/design-md-agent-rules.md) for the distilled workflow.
 
 ---
 
