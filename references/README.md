@@ -25,6 +25,7 @@ When invoking the design skill, point the agent at a relevant reference:
 - [Agent Layout Alignment Specs](agent-layout-alignment.md) — draw alignment rails, bounding boxes, padding boxes, hit areas, anchors, and stable/changing regions so coding agents understand structure
 - [DESIGN.md Agent Rules](design-md-agent-rules.md) — use Google's DESIGN.md pattern as project memory: tokens for exact values, prose for rationale, linting/export for agent-safe design systems
 - [Liquid Glass for the Web](liquid-glass-web.md) — live-content glass lenses: displacement maps, rim/specular highlights, component states, cross-browser SVG/WebGL rendering, and performance guardrails
+- [Shader Page Transitions](shader-page-transitions.md) — GPU-composited route sweeps: shell-level WebGL layer, semantic direction/easing, restrained palettes, reduced-motion fallbacks, and performance QA
 - [Sidebar Navigation](sidebar-navigation.md) — 24–26px rows, 0px gaps, warm off-white bg, inset hover pills, only color is team avatars
 - [Chat Input](chat-input.md) — white card composer on warm grey canvas, border not shadow, oversized placeholder, toolbar inside the card
 - [Sidebar Popover](sidebar-popover.md) — settings mode overlay in the sidebar column, larger rows signal mode switch, pinned back action

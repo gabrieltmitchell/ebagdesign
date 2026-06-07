@@ -57,6 +57,7 @@ For global rules, place the file at `~/.codex/AGENTS.md`.
 | Icons | Lucide only. Consistent sizing. Never mix libraries. |
 | Design System Source of Truth | Use DESIGN.md-style tokens + prose as project memory: exact values in YAML, intent and constraints in Markdown. |
 | Liquid Glass | Live-content glass lenses with displacement maps, rim/specular highlights, cross-browser SVG/WebGL rendering, and performance guardrails. |
+| Shader Page Transitions | GPU-composited route sweeps: shell-level WebGL, semantic direction/easing, restrained palettes, reduced-motion fallback, and performance QA. |
 | Components | BaseUI foundation. Animated dropdowns and dialogs. Subtle hover states. |
 | Animations | Framer Motion everywhere. Smooth morphing containers. Animation vocabulary, easing, springs, reduced motion, and performance QA. |
 | Agent Handoff | Draw the invisible layout boxes: rails, bounds, padding, hit areas, anchors, and stable vs. changing regions. |
@@ -79,6 +80,12 @@ Google's [`design.md`](https://github.com/google-labs-code/design.md) format is 
 ## Liquid glass for the web
 
 For tactile glass surfaces, use live-content lenses driven by displacement maps rather than simple blur overlays. Keep refracted regions small, preserve readability and interactivity, and switch between SVG filters for DOM and WebGL for canvas/video surfaces when browser support requires it. See [`references/liquid-glass-web.md`](references/liquid-glass-web.md) for the distilled component and performance guidance.
+
+---
+
+## Shader page transitions
+
+For expressive route changes, use a single GPU-composited shader sweep at the app shell level. Keep screens stable underneath it, match sweep direction/easing to navigation semantics, tune palettes against real UI surfaces, and provide non-WebGL plus reduced-motion fallbacks. See [`references/shader-page-transitions.md`](references/shader-page-transitions.md) for the distilled implementation and QA guidance.
 
 ---
 

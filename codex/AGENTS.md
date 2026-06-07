@@ -119,6 +119,15 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 
 See also: `references/animation-vocabulary.md` for the full vocabulary and QA checklist.
 
+### Shader-driven page transitions
+- Use shader sweeps only for route-level navigation or major scene/state changes where continuity matters; do not apply WebGL effects to small component toggles, hovers, menus, or routine feedback.
+- Mount one transition layer at the app shell/root and keep screens structurally stable underneath it. The shader masks a change; it must not cause layout reflow or own content positioning.
+- Match sweep direction, width, easing, and duration to navigation semantics: forward/back direction should make spatial sense, the band should be soft but focused, and the motion should feel responsive rather than decorative.
+- Keep shader color as the rare expressive moment in an otherwise quiet black/grey UI. Tune palettes against real surfaces, preserve text legibility, and do not let a transition introduce static gradients, glows, or colored shadows.
+- Lazy-initialize and isolate WebGL work, use a single context/layer, provide a non-WebGL fallback, and respect `prefers-reduced-motion` by reducing or disabling sweeps.
+
+See also: `references/shader-page-transitions.md` for the full shader transition pattern distilled from glimm.dev.
+
 ---
 
 ## Dividers
