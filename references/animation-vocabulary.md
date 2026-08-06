@@ -31,7 +31,7 @@ Source distilled from [animations.dev/vocabulary](https://animations.dev/vocabul
 
 ## Transitions between states
 
-- Preserve spatial consistency. Elements should feel like they travel, resize, or morph — not teleport.
+- Preserve spatial consistency. Elements should feel like they traveled, resized, or morphed — not teleport.
 - Use shared element transitions (`layoutId`) when a card, thumbnail, row, or selected state becomes another surface.
 - Use layout animation for size and position changes so surrounding content glides instead of snapping.
 - Use direction-aware page transitions: forward navigation moves one way; back navigation reverses it.
@@ -40,6 +40,13 @@ Source distilled from [animations.dev/vocabulary](https://animations.dev/vocabul
 ## Feedback and interaction
 
 - Hover effects are subtle background or opacity shifts; avoid loud color changes, shadows, or glow.
+- **Button & Card Hover Terms**: When describing or implementing hover states, use these clear terms to guide the behavior:
+  - **Lift Hover**: Element lifts up slightly (using `translateY` or scale) with a subtle shadow transition to establish depth.
+  - **Magnetic Hover**: Element is drawn towards the cursor within a certain radius, aligning the center of the element with a slightly offset cursor position.
+  - **Spotlight Hover**: A radial gradient glow follows the cursor's movement across the container's surface.
+  - **Tilt Hover**: Element tilts in 3D space based on the cursor's coordinates relative to the center of the element.
+  - **Parallax Hover**: Multiple layered elements inside a card shift at different speeds when hovered to create a sense of physical depth.
+  - **Morph Hover**: Element changes shape or border-radius smoothly on hover.
 - Press/tap feedback should be physical and quick, usually a small scale-down that springs back.
 - Drag, swipe-to-dismiss, and reorder interactions should carry momentum and let neighboring elements make room.
 - Use shake/wiggle only for errors or rejected actions.

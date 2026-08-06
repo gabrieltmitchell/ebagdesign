@@ -1,19 +1,22 @@
-# Frontend Design Skill
+---
+description: Frontend design rules for clean, minimal, product-grade UI
+globs: "**/*.tsx,**/*.ts,**/*.css,**/*.scss"
+alwaysApply: true
+---
 
-You are a frontend design agent with strong opinions about clean, minimal, product-grade UI. When invoked, you can either **review and fix** existing code or **generate new components** — determine which is needed from context.
+# Frontend Design Rules
+
+You are a frontend design agent with strong opinions about clean, minimal, product-grade UI. When making UI changes, always follow these rules.
 
 ---
 
 ## Core Philosophy: Less is More
 
-- **Don't label what is visually obvious.** Spacing, hierarchy, and layout communicate structure — avoid adding section headings, group labels, or titles unless they genuinely aid navigation.
-- **Fewer words everywhere.** UI text should be as short as possible. Trim labels, placeholder text, and button copy ruthlessly.
+- **Don't label what is visually obvious.** Spacing, hierarchy, and layout communicate structure — avoid section headings, group labels, or titles unless they genuinely aid navigation.
+- **Fewer words everywhere.** Trim labels, placeholder text, and button copy ruthlessly.
 - **Let structure speak.** Use spacing and visual weight to separate concerns — not borders, titles, or cards wrapping every group.
 - **Draw the layout boxes for agents.** For implementation handoff, specify the invisible geometry — alignment rails, bounding boxes, padding, hit areas, anchors, and stable/changing regions — so agents understand structure, not just appearance.
-- **Resist the urge to add.** When in doubt, remove. A clean surface with less on it is almost always better than a labeled, bordered, titled one.
-- **Don't frame inline components as modals.** If a component lives inline on a page, it should sit there without dialog chrome, outer containers, or heavy background treatments. Only use modal/dialog framing when content truly needs to interrupt the flow.
-- **Controls belong outside the component.** Action buttons, triggers, and controls that drive a component should live outside it — not embedded in a footer or header inside the component itself.
-- **Don't render empty states that frame the interaction.** Components should only appear once there is content to show. An empty card waiting for interaction adds visual noise.
+- **Resist the urge to add.** When in doubt, remove.
 
 ---
 
@@ -28,12 +31,12 @@ You are a frontend design agent with strong opinions about clean, minimal, produ
 
 ## Design System Source of Truth
 
-- **Look for DESIGN.md first.** Before making UI changes, check for `DESIGN.md`, `design.md`, `tokens.json`, Tailwind theme config, CSS variables, or other design-system files. Treat them as the project's source of truth.
-- **Tokens are exact values.** Use design tokens for colors, typography, spacing, radii, and component states instead of inventing one-off values in component code.
-- **Prose carries taste.** Read the human-written rationale and constraints, not just the YAML. Specific references and negative constraints should guide the implementation when a token alone is ambiguous.
-- **Preserve the system.** If a local UI pattern conflicts with the design source of truth, adapt the implementation to the source of truth rather than creating a parallel style.
-- **Create durable memory when missing.** If a project has no design source of truth and you are establishing repeated decisions, add or propose a small DESIGN.md instead of scattering hardcoded values.
-- **Validate when available.** If the project uses Google's DESIGN.md format, run `npx @google/design.md lint DESIGN.md` and fix broken references, contrast problems, typo-like keys, and section-order issues before relying on it.
+- Check for `DESIGN.md`, `design.md`, `tokens.json`, Tailwind config, CSS variables, or other design-system files before changing UI.
+- Treat design tokens as exact values for colors, typography, spacing, radii, and component states. Do not invent one-off values when a token exists.
+- Read the prose, not just the values. The rationale, references, and negative constraints explain the taste the code should preserve.
+- If the implementation conflicts with the design source of truth, adapt the implementation instead of creating a parallel visual language.
+- If no source of truth exists and repeated design decisions are emerging, add or propose a small DESIGN.md so future agents inherit the system.
+- When using Google's DESIGN.md format, validate with `npx @google/design.md lint DESIGN.md` and fix broken refs, contrast issues, typo-like keys, and section-order warnings.
 
 See also: `references/design-md-agent-rules.md` for the full DESIGN.md workflow.
 
@@ -56,7 +59,7 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 - Default font: **Inter**. Only deviate if another font is already established in the codebase.
 - Use a limited type scale appropriate for product UI — not marketing. Avoid large display text unless the codebase already uses it.
 - Suggested scale: 12px (caption), 13px (small), 14px (body), 16px (body-lg), 18px (heading-sm), 22px (heading), 28px (heading-lg).
-- Body text: dark grey (e.g. `#374151` or similar). Titles: black (`#111827`). Subtitles/secondary: grey or light grey (`#6B7280`, `#9CA3AF`).
+- Body text: dark grey (e.g. `#374151`). Titles: black (`#111827`). Subtitles/secondary: grey or light grey (`#6B7280`, `#9CA3AF`).
 - Font weights: 400 (regular), 500 (medium), 600 (semibold). Use sparingly and consistently.
 
 ---
@@ -76,9 +79,9 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 - Shape: either **fully rounded** (`rounded-full`) or **rounded corners** (`rounded-md` / `rounded-lg`) with a light grey border.
 - Background: very light grey (e.g. `bg-gray-50` or `bg-gray-100`). No heavy fills.
 - No shadows.
-- Padding: more horizontal than vertical. E.g. `px-4 py-1.5` or `px-5 py-2`. Never equal padding on all sides.
+- Padding: more horizontal than vertical. E.g. `px-4 py-1.5` or `px-5 py-2`.
 - Text: dark, legible. Use semibold or medium weight.
-- Hover: subtle background shift (e.g. `hover:bg-gray-100` → `hover:bg-gray-200`).
+- Hover: subtle background shift only. See Hover Effects section under Animations for terminology (Lift, Magnetic, Spotlight, Tilt, Parallax, Morph).
 
 ---
 
@@ -92,11 +95,11 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 
 ## Components
 
-- Use **BaseUI** as the functional foundation for interactive components (dropdowns, dialogs, selects, etc.) unless the codebase already uses another headless library.
-- **Dropdowns**: even padding on all sides (`p-1` container, `px-3 py-1.5` items). Minimal vertical space between options. Apply a **Framer Motion** animation to open/close (e.g. `scaleY` + `opacity` from origin top).
+- Use **BaseUI** as the functional foundation for interactive components unless the codebase already uses another headless library.
+- **Dropdowns**: even padding on all sides (`p-1` container, `px-3 py-1.5` items). Minimal vertical space between options. Apply a **Framer Motion** animation to open/close.
 - **Dialogs**: fairly wide (`max-w-lg` to `max-w-2xl` depending on content). Always include a header row: title on the left (semibold, 15–16px) and a close button on the top right. Close button: `X` icon from Lucide inside a very light grey padded circle (`bg-gray-100 rounded-full p-1.5`), subtle hover darkens the circle slightly. Use smaller fonts throughout, light grey padded list backgrounds, minimal chrome.
 - **Dialog animations**: use `AnimatePresence` for mount/unmount with a backdrop fade and dialog entering via `opacity` + `scale: 0.97 → 1`. When content inside the dialog transitions (e.g. multi-step flows), animate old content out and new content in — never hard-cut between states. Use the `layout` prop on the dialog container so it smoothly morphs height as content changes.
-- **Hover states**: simple and subtle. Light background shifts only — no color changes or bold effects.
+- **Hover states**: simple and subtle. Light background shifts only.
 - **Row stacks** (process steps, log items, agentic step lists): gap between rows should be `2px` maximum. Apply grouped radii — rounded top corners on the first row, rounded bottom corners on the last, small radius (`2–4px`) on middle rows. This makes the stack read as one cohesive unit. Text inside rows should be short — one short phrase, not a sentence. **Do not use grouped radii for sidebar nav rows or settings rows** — those are different patterns entirely (see Sidebar and Settings sections).
 - **Progressive reveal:** components that are triggered by user action should not render until that action happens. Use a `hasStarted` flag or equivalent — don't mount an empty card as a placeholder.
 - **Keyboard support on custom interactive elements.** Any element that acts like a button but isn't a `<button>` (expandable rows, custom toggles) must handle `Enter` and `Space` keydown events explicitly.
@@ -113,6 +116,13 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 - **Use the right easing:** ease-out for user-triggered responses, ease-in-out for objects already moving between states, linear only for constant loops, and springs when interruption, momentum, or physical settle matters.
 - **Sequence related motion.** Stagger lists and choreograph multi-part transitions lightly so they read as one coordinated change, not separate effects.
 - **Keep feedback physical but quiet.** Hover is a subtle background/opacity shift; press/tap is a small scale-down and spring-back; drag/swipe/reorder should carry velocity and momentum.
+- **Hover Effects Terminology:** When writing or reviewing code for hover states, use these terms to describe button or card hover states:
+  - **Lift Hover**: Element lifts up slightly (using `translateY` or scale) with a subtle shadow transition to establish depth.
+  - **Magnetic Hover**: Element is drawn towards the cursor within a certain radius, aligning the center of the element with a slightly offset cursor position.
+  - **Spotlight Hover**: A radial gradient glow follows the cursor's movement across the container's surface.
+  - **Tilt Hover**: Element tilts in 3D space based on the cursor's coordinates relative to the center of the element.
+  - **Parallax Hover**: Multiple layered elements inside a card shift at different speeds when hovered to create a sense of physical depth.
+  - **Morph Hover**: Element changes shape or border-radius smoothly on hover.
 - **Respect reduced motion.** Check `prefers-reduced-motion` and reduce distance, parallax, looping motion, and nonessential transitions while preserving state feedback.
 - **Performance is part of design.** Target 60fps+, watch for jank/dropped frames/layout thrashing, and use `will-change` sparingly for short-lived promotion only.
 - Use **Framer Motion** for all transitions and state changes.
@@ -120,7 +130,7 @@ See also: `references/agent-layout-alignment.md` for the full principle and chec
 - When a component transitions between states, its **container must morph** to the new size/shape — do not hard-code dimensions.
 - **Chevrons** must rotate smoothly on open/close (`rotate: 180` with a spring or ease transition).
 - Keep durations short and purposeful: 150–250ms for micro-interactions, 250–350ms for larger layout shifts.
-- Easing: use `ease: [0.16, 1, 0.3, 1]` (ease-out expo) or Framer's `spring` for natural feel.
+- Easing: `ease: [0.16, 1, 0.3, 1]` (ease-out expo) or Framer's `spring` for natural feel.
 - Use **continuity transitions** (`layoutId` in Framer Motion) whenever an element moves between locations or expands into a new state — a card opening into a detail view, a list item becoming a modal, a thumbnail growing into a hero. The element should feel like it physically travels, not teleports.
 - Use **context transitions** for navigational changes — the transition should reflect the direction and hierarchy of the navigation (e.g., slide right/forward when going deeper, slide left/back when returning). The user's sense of place should never be broken.
 - **Separate stable content from animated content.** Elements that should stay anchored (e.g. a task title, a checkbox) must not participate in layout projection. Wrap only the animated portion — don't apply `layout` to the entire parent if it causes stable siblings to shift.
